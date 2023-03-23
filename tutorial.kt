@@ -54,6 +54,27 @@ data class Car(val brandName: String, val engine: Engine, val price: Double) {
         // return "Brand Name: $brandName, engine: ${this.engine.engineType}, price: $price"
     // }
 }
+class OuterClass {
+    private val message = "Hello from outer class"
+    inner class InnerClass {
+        fun printMessage() {
+            println("Message from inner class: ")
+            println(this@OuterClass.message)
+        }
+    }
+}
+
+class OuterClass {
+    private val message = "Hello from outer class"
+
+    class NestedClass {
+        fun printMessage() {
+            println("Message from nested class: ")
+            // Uncomment the following line to access the outer class message
+            // println(this@OuterClass.message)
+        }
+    }
+}
  
 fun main() {
  var mercedesEngine = DieselEngine("Diesel")
@@ -68,4 +89,12 @@ fun main() {
    
  // println(mercedesEngine is Engine)  
  println(redbull.toString())
+ 
+ 
+ val outerClass = OuterClass()
+ val innerClass = outerClass.InnerClass()
+ innerClass.printMessage()
+ 
+ val nestedClass = OuterClass.NestedClass()
+    nestedClass.printMessage()
 }
